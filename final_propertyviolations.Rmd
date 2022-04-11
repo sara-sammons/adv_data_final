@@ -1,0 +1,31 @@
+---
+title: "KC_violations"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+Data downloaded from OpenDataKC (https://data.kcmo.org/Neighborhoods/Kansas-City-Code-Violations/mnjv-uy2z), 
+
+```{r}
+violations<- violations %>% clean_names()
+```
+
+
+```{r}
+violations<-read_csv("data/KC_violations.csv")
+```
+
+What's the range of this data; how many years does it cover?
+```{r}
+violations %>% count(violation_entry_date) %>% arrange(desc(violation_entry_date))
+
+violations %>% summarise(range(violation_entry_date, na.rm=T))
+```
+
+
+
+
